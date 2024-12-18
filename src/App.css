@@ -1,0 +1,70 @@
+.btn-container{
+    display: flex;
+    flex-direction: row;
+    justify-content:left;
+    align-items:center;
+}
+.registration-form {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+  }
+  
+  .form-group {
+    margin-bottom: 15px;
+  }
+  
+  label {
+    display: block;
+    margin-bottom: 5px;
+  }
+  
+  input, select {
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  button {
+    padding: 10px 15px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  button:hover {
+    background-color: #45a049;
+  }
+  .ticket {
+    width: 500px;
+    padding: 20px;
+    background: #f4f4f4;
+    border-radius: 10px;
+    border: 2px solid #ccc;
+    text-align: center;
+    font-family: Arial, sans-serif;
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
+  }
+  
+  .ticket h2 {
+    margin-bottom: 10px;
+    color: #333;
+  }
+  
+  .ticket p {
+    font-size: 14px;
+    color: #555;
+  }
+  
+  .ticket .event-info {
+    margin-top: 20px;
+    font-weight: bold;
+  }
+  
