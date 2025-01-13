@@ -5,9 +5,9 @@ import MenuBar from './MenuBar';
 import { Button,AppBar, Toolbar,Container, Typography, Box } from '@mui/material';
 import ContactPage from './ContactPage';
 import AboutPage from './AboutPage';
-import CreateEvent from './CreateEvent';
 import EventForm from './EventForm';
 import EventList from './EventList';
+import EditEvent from './EditEvent';
 import UserList from './UserList';
 import EventRegistrationForm from './EventRegistrationForm';
 import TicketGeneration from './TicketGeneration';
@@ -29,16 +29,16 @@ function App() {
     setOpen(false);
   };
 
-  const [message, setMessage] = useState('');
-  useEffect(() => {
-    fetch('http://localhost:5000/')
-      .then(response => response.text())
-      .then(data => setMessage(data))
-      .catch(error => {
-        console.error('Error fetching data:', error);
-        setMessage('Failed to load message');
-      });
-  }, []);
+  // const [message, setMessage] = useState('');
+  // useEffect(() => {
+  //   fetch('http://localhost:5000/')
+  //     .then(response => response.text())
+  //     .then(data => setMessage(data))
+  //     .catch(error => {
+  //       console.error('Error fetching data:', error);
+  //       setMessage('Failed to load message');
+  //     });
+  // }, []);
 
 
   useEffect(() => {
@@ -129,9 +129,11 @@ function App() {
                   <EventForm open={open} onClose={handleClose} />
                   
                   <Button variant="contained" color="primary"  style={{ margin: '10px' }} component={Link} to="/event-list">Event List</Button>
+                  <Button variant="contained" color="primary"  style={{ margin: '10px' }} component={Link} to="/edit-event">Edit Event</Button>
 
                </div>} /> 
             <Route path="/event-list" element={<EventList />} />
+            <Route path="/edit-event" element={<EditEvent />} />
             <Route path="/user-list" element={<UserList />} />
             <Route path="/about" element={<AboutPage />} /> 
             <Route path="/services" element={<div className='btn-container'>
@@ -152,8 +154,6 @@ function App() {
 
                   <Button variant="contained" color="primary"  style={{ margin: '10px' }} component={Link} to="/user-list">Attendees List</Button>
 
-
-                 
 
                </div>} /> 
               

@@ -212,8 +212,14 @@ const EventRegistrationForm = ({ open, onClose, events }) => {
               <MenuItem value="">
                 <em>Select an event</em>
               </MenuItem>
-              {uniqueEvents.map((event) => (
+              {/* {uniqueEvents.map((event) => (
                 <MenuItem key={event.id} value={event.eventName}>
+                  {event.eventName}
+                </MenuItem>
+              ))} */}
+
+{uniqueEvents.map((event) => (
+                <MenuItem key={event.eventId} value={event.eventName}>
                   {event.eventName}
                 </MenuItem>
               ))}
