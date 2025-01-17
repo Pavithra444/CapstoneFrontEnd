@@ -169,7 +169,7 @@ const TicketGenerationDialog = ({ open, onClose }) => {
             label="Date"
             fullWidth
             type="date"
-            // value={ticketDate}
+            value={ticketDate}
  
             readOnly
             style={{ marginBottom: 16 }}
