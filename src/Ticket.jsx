@@ -50,7 +50,7 @@ const Ticket = () => {
       ctx.fillText(`Ticket ID: ${ticketDetails.registrationId}`, 20, 90);
       ctx.fillText(`Event Name: ${ticketDetails.eventName}`, 20, 120);
       ctx.fillText(`Ticket Category: ${ticketDetails.ticketCategory}`, 20, 150);
-      ctx.fillText(`Customer Name: ${ticketDetails.name}`, 20, 180);
+      ctx.fillText(`Name: ${ticketDetails.name}`, 20, 180);
       ctx.fillText(`Ticket Date: ${formattedTicketDate}`, 20, 210);
 
       // Convert canvas to image URL (PNG format)
@@ -121,7 +121,7 @@ const Ticket = () => {
               <strong>Ticket Category:</strong> {ticketDetails.ticketCategory}
             </Typography>
             <Typography variant="body1">
-              <strong>Customer Name:</strong> {ticketDetails.name}
+              <strong>Name:</strong> {ticketDetails.name}
             </Typography>
             <Typography variant="body1">
               <strong>Ticket Date:</strong> {formattedTicketDate}
