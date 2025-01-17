@@ -29,7 +29,8 @@ const  AttendeeRegistration = ({ open, onClose }) => {
 
   const handleSubmit = async () => {
     try {
-      const response = await axios.post('http://localhost:5000/register', formData);
+      // const response = await axios.post('http://localhost:5000/register', formData);
+      const response = await axios.post('https://capstonebackend-ymwc.onrender.com/register', formData);
       console.log(response.data);
       alert('Registration Successful');
       onClose(); // Close the dialog after successful submission

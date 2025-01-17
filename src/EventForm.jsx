@@ -60,7 +60,8 @@ const EventForm = ({ open, onClose }) => {
     }
 
     try {
-      const response = await axios.post('http://localhost:5000/create-event', formDataToSend, {
+      // const response = await axios.post('http://localhost:5000/create-event', formDataToSend, {
+        const response = await axios.post('https://capstonebackend-ymwc.onrender.com/create-event', formDataToSend, {
         headers: {
           'Content-Type': 'multipart/form-data', // Ensure the correct content type for file uploads
         },

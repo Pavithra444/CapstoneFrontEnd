@@ -17,7 +17,8 @@ const EventList = () => {
   useEffect(() => {
     const fetchEvents = async () => {
       try {
-        const response = await axios.get('http://localhost:5000/get-events');
+        // const response = await axios.get('http://localhost:5000/get-events');
+        const response = await axios.get('https://capstonebackend-ymwc.onrender.com/get-events');
         setEvents(response.data); // Assuming the API returns an array of events
         setFilteredEvents(response.data);
       } catch (error) {

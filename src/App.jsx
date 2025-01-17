@@ -44,7 +44,8 @@ function App() {
   useEffect(() => {
     const fetchEvents = async () => {
       try {
-        const response = await fetch('http://localhost:5000/get-events'); // Fetch from the backend
+        // const response = await fetch('http://localhost:5000/get-events'); // Fetch from the backend
+        const response = await fetch('https://capstonebackend-ymwc.onrender.com/get-events'); // Fetch from the backend
         const data = await response.json();
         setEvents(data); // Store the events in state
       } catch (error) {

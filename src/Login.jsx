@@ -12,7 +12,8 @@ const Login = () => {
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('http://localhost:5000/login', { email, password });
+      // const response = await axios.post('http://localhost:5000/login', { email, password });
+      const response = await axios.post('https://capstonebackend-ymwc.onrender.com/login', { email, password });
       navigate('/home');
     } catch (error) {
       setErrorMessage('Invalid credentials, please try again');
@@ -31,6 +32,7 @@ const Login = () => {
             fullWidth
             margin="normal"
             value={email}
+            autoComplete="email"
             onChange={(e) => setEmail(e.target.value)}
             required
             sx={{ mb: 2 }}
@@ -41,6 +43,7 @@ const Login = () => {
             fullWidth
             margin="normal"
             value={password}
+            autoComplete="current-password"
             onChange={(e) => setPassword(e.target.value)}
             required
             sx={{ mb: 2 }}

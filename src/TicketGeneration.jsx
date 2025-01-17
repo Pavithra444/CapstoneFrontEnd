@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 import { Dialog, DialogActions, DialogContent, DialogTitle, Button, TextField, MenuItem, Select, InputLabel, FormControl } from '@mui/material';
 import axios from 'axios';
 
@@ -15,11 +15,18 @@ const TicketGenerationDialog = ({ open, onClose }) => {
   const [ticketDate, setTicketDate] = useState('');
   const [ticketData, setTicketData] = useState(null);
   
+  useEffect(() => {
+    // Set the current date in YYYY-MM-DD format when the component mounts
+    const currentDate = new Date().toISOString().split('T')[0]; // Get current date in YYYY-MM-DD format
+    setTicketDate(currentDate);
+  }, []); 
   // Handle registrationId Enter key event
   const handleRegistrationIdEnter = async (event) => {
     if (event.key === 'Enter') {
       try {
-        const response = await axios.post('http://localhost:5000/get-attendee-details', { registrationId });
+        // const response = await axios.post('http://localhost:5000/get-attendee-details', { registrationId });
+        const response = await axios.post('https://capstonebackend-ymwc.onrender.com/get-attendee-details', { registrationId });
+        
         if (response.data.success) {
           const { name, phoneNo, event,special,vip,general } = response.data.attendee;
           setName(name);
@@ -33,23 +40,6 @@ const TicketGenerationDialog = ({ open, onClose }) => {
         console.error('Error fetching attendee details:', error);
       }
     }
-   
-    // try {
-    //   const respons = await axios.post('http://localhost:5000/get-event-pricedtls', { event });
-    //   if (respons.data.success) {
-    //     const { special,vip,general } = respons.data.event;
-      
-    //     setSpecial(special);
-    //     setVip(vip);
-    //     setGeneral(general);
-    //     console.log(respons.data.event);
-       
-    //   } else {
-    //     alert('event not found');
-    //   }
-    // } catch (error) {
-    //   console.error('Error fetching event price details:', error);
-    // }
   
   };
 
@@ -60,7 +50,8 @@ const TicketGenerationDialog = ({ open, onClose }) => {
     if (eventName) {
       try {
         // Send a GET request with eventName in the URL
-        const response = await axios.get(`http://localhost:5000/get-event-pricedtls/${encodeURIComponent(eventName)}`);
+        // const response = await axios.get(`http://localhost:5000/get-event-pricedtls/${encodeURIComponent(eventName)}`);
+        const response = await axios.get(`https://capstonebackend-ymwc.onrender.com/get-event-pricedtls/${encodeURIComponent(eventName)}`);
   
         if (response.data) {
           // Handle the response if the event is found
@@ -96,30 +87,6 @@ const TicketGenerationDialog = ({ open, onClose }) => {
     setTicketPrice(categories[category] || '');
   };
 
-  // const handleGenerateTicket = async () => {
-  //   if (!registrationId || !name || !phoneNo || !eventName || !ticketCategory || !ticketPrice || !ticketDate) {
-  //     alert('Please fill in all the fields');
-  //     return;
-  //   }
-  //   try {
-  //     const response = await axios.post('http://localhost:5000/generate-ticket', {
-  //             registrationId,
-  //             name,
-  //             phoneNo,
-  //             eventName,
-  //             ticketCategory,
-  //             ticketPrice,
-  //             ticketDate,
-  //           });
-  //     console.log(response.data);
-  //     alert('Ticket Generation Successful');
-  //     onClose(); // Close the dialog after successful submission
-  //   } catch (error) {
-  //     console.error('Ticket Generation Failed', error);
-  //     alert('Ticket Generation Failed');
-  //   }
-  // };
-
   const handleGenerateTicket = async () => {
     // Validate required fields
     const missingFields = [];
@@ -130,9 +97,10 @@ const TicketGenerationDialog = ({ open, onClose }) => {
   if (!eventName) missingFields.push('Event Name');
   if (!ticketCategory) missingFields.push('Ticket Category');
   if (!ticketPrice) missingFields.push('Ticket Price');
-  if (!ticketDate || isNaN(Date.parse(ticketDate))) {
-    missingFields.push('Ticket Date');
-  }
+  // if (!ticketDate || isNaN(Date.parse(ticketDate))) {
+  //   missingFields.push('Ticket Date');
+  // }
+  if (!ticketDate) missingFields.push('Ticket Date');
 
   // If there are missing fields, show an alert with the list
   if (missingFields.length > 0) {
@@ -142,7 +110,8 @@ const TicketGenerationDialog = ({ open, onClose }) => {
 
   const formattedTicketDate = new Date(ticketDate).toISOString();
     try {
-      const response = await axios.post('http://localhost:5000/generate-ticket', {
+      // const response = await axios.post('http://localhost:5000/generate-ticket', {
+        const response = await axios.post('https://capstonebackend-ymwc.onrender.com/generate-ticket', {
         registrationId,
         name,
         phoneNo,
@@ -199,9 +168,10 @@ const TicketGenerationDialog = ({ open, onClose }) => {
           <TextField
             label="Date"
             fullWidth
-            value={new Date()}
-            // value={ticketDate ? new Date(ticketDate).toLocaleString() : new Date().toLocaleString()}
-            disabled
+            type="date"
+            // value={ticketDate}
+ 
+            readOnly
             style={{ marginBottom: 16 }}
           />
           <TextField

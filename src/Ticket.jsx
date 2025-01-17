@@ -19,8 +19,11 @@ const Ticket = () => {
 
     try {
       // Make an API call to fetch ticket details based on registrationId
-      const response = await axios.get(`http://localhost:5000/tickets/${registrationId}`);
+      // const response = await axios.get(`http://localhost:5000/tickets/${registrationId}`);
+      const response = await axios.get(`https://capstonebackend-ymwc.onrender.com/tickets/${registrationId}`);
+
       setTicketDetails(response.data); // Set ticket data to the state
+      
     } catch (err) {
       setError('Failed to fetch ticket details. Please try again.');
     } finally {
@@ -36,7 +39,11 @@ const Ticket = () => {
     return downloadUrl;
   };
 
-  
+  const formattedTicketDate = new Date(ticketDetails.ticketDate).toLocaleDateString('en-US', {
+    year: 'numeric',
+    month: '2-digit',
+    day: '2-digit',
+  });
 
   return (
     <Box sx={{ padding: 2, maxWidth: 600, margin: 'auto' }}>
@@ -86,9 +93,9 @@ const Ticket = () => {
             <Typography variant="body1">
               <strong>Customer Name:</strong> {ticketDetails.name}
             </Typography>
-            {/* <Typography variant="body1">
-              <strong>Email:</strong> {ticketDetails.customerEmail}
-            </Typography> */}
+            <Typography variant="body1">
+            <strong>Ticket Date:</strong> {formattedTicketDate}
+            </Typography>
             
             <Box sx={{ marginTop: 2 }}>
               <Button variant="contained" color="secondary" href={generateDownloadLink()} download="ticket.txt">

@@ -37,7 +37,8 @@ const EditEvent = () => {
   const fetchEvent = async () => {
     try {
       setLoading(true);
-      const response = await axios.get(`http://localhost:5000/get-event/${eventId}`);
+      // const response = await axios.get(`http://localhost:5000/get-event/${eventId}`);
+      const response = await axios.get(`https://capstonebackend-ymwc.onrender.com/get-event/${eventId}`);
       setEventDetails(response.data);
       setFormData({
         eventName: response.data.eventName,
@@ -76,7 +77,8 @@ const EditEvent = () => {
         general: formData.general,
         attendees: formData.attendees,
       };
-      await axios.put(`http://localhost:5000/update-event/${eventId}`, updatedEvent);
+      // await axios.put(`http://localhost:5000/update-event/${eventId}`, updatedEvent);
+      await axios.put(`https://capstonebackend-ymwc.onrender.com/${eventId}`, updatedEvent);
       alert('Event updated successfully');
     } catch (err) {
       alert('Error updating event');
@@ -86,7 +88,8 @@ const EditEvent = () => {
   // Delete event
   const handleDelete = async () => {
     try {
-      await axios.delete(`http://localhost:5000/delete-event/${eventId}`);
+      // await axios.delete(`http://localhost:5000/delete-event/${eventId}`);
+      await axios.delete(`https://capstonebackend-ymwc.onrender.com/delete-event/${eventId}`);
       alert('Event deleted successfully');
       handleCloseDialog(); 
       setEventDetails(null); // Clear event details after deletion
